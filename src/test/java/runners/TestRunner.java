@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            features = "src/main/resources/features/ValidateTrack.feature"
+            features = "src/test/resources/features/ValidateTrack.feature"
     )
     public class TestRunner {
 }

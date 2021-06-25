@@ -1,10 +1,14 @@
 package seleniumTests;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,17 +81,37 @@ public class AddTrack_E2E {
         firstName.sendKeys("Kajal");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_last_name\"]")).sendKeys("Chaudhary");
 
-        driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_company\"]")).sendKeys("Kano Computin");
+        driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_company\"]")).sendKeys("Kano Computing");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_address1\"]")).sendKeys("12.1 12.2");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_address2\"]")).sendKeys("Fashion Street");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_city\"]")).sendKeys("London");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_zip\"]")).sendKeys("E1 6PX");
         driver.findElement(By.xpath("//*[@id=\"checkout_shipping_address_phone\"]")).sendKeys("55555555");
-        //driver.manage().timeouts().implicitlyWait(8,TimeUnit.SECONDS);
         System.out.println("Continue to shipping "+driver.findElement(By.xpath("//*[@id=\"continue_button\"]/span")).isEnabled());
         driver.findElement(By.xpath("//*[@id=\"continue_button\"]")).click();
 
+        //next page radio button
+        //*[@id="checkout_shipping_rate_id_shopify-express20shipping-6_00"]
+        //*[@id="checkout_shipping_rate_id_shopify-free20shipping-0_00"]
 
+        //next page
+        driver.findElement(By.xpath("//*[@id=\"continue_button\"]")).click();
+
+        //Apply discount if any
+        driver.findElement(By.xpath("//*[@id=\"checkout_reduction_code_mobile\"]")).sendKeys("SPTEST");
+
+
+        driver.findElement(By.xpath("/html/body/div/div/div/main/div[1]/div/div[2]/div[2]/div/form[2]/div/div/div/button")).click();
+
+
+
+
+    }
+
+    public void readExcel(String filePath,String fileName,String sheetName) throws FileNotFoundException {
+     File file= new File("/Users/kano5/Documents/Automation"+"//","DemoExcel");
+        FileInputStream inputStream = new FileInputStream(file);
+        //Workbook wbk=new Workbook();
     }
 
 }
